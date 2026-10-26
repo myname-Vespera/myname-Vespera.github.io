@@ -41,7 +41,7 @@ subtitle:
     cursorChar: "|"             # character for cursor
     smartBackspace: false       # only backspace what doesn't match the previous string
 
-banner: "/images/banner.webp" # which means themes/reimu/source/images/banner.webp
+banner: "/images/banner.jpg" # 站点自定义头图（source/images/banner.jpg）
 # You can also write it in the form of the following url
 # banner: "https://example.com"
 
@@ -87,7 +87,7 @@ open_graph:
     #google_plus: <g+:profile_link>
     #fb_admins: <fb:admin_id>
     #fb_app_id: <fb:app_id>
-    default_og_image: /images/banner.webp # the default og:image for Open Graph, support absolute path
+    default_og_image: /images/banner.jpg # the default og:image for Open Graph, support absolute path
 
 # Content
 excerpt_link: Read More
