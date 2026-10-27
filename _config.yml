@@ -94,10 +94,18 @@ include:
 exclude:
 ignore:
 
+# Local Search
+search:
+  path: search.xml
+  field: post
+  content: true
+  format: html
+  limit: 10000
+
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: reimu
+theme: anzhiyu
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
