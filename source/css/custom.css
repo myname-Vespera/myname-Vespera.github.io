@@ -1,66 +1,74 @@
 /* ===========================================================
-   Vespera · 清冷紫蓝定制层
+   Vespera · 星之海 × 友利奈绪 定制层
    面向 hexo-theme-anzhiyu，仅通过 CSS 变量与少量选择器覆盖
+   取色依据：银白发 / 蓝瞳 / 红水手服 / 鹅黄领结
    =========================================================== */
 
-/* ---------- 亮色：冷调薰衣草白 ---------- */
+:root {
+  /* 角色特征色 */
+  --nao-red: #c0453f;
+  --nao-gold: #e4bc4e;
+  --nao-silver: #d9e2f0;
+}
+
+/* ---------- 亮色：冷银白 · 星海 ---------- */
 :root,
 [data-theme="light"] {
-  --anzhiyu-theme: #7c6fe8;
-  --anzhiyu-theme-deep: #6355d4;
-  --anzhiyu-theme-op: #7c6fe823;
-  --anzhiyu-theme-op-deep: #7c6fe8dd;
+  --anzhiyu-theme: #4a7cd6;
+  --anzhiyu-theme-deep: #3a64b4;
+  --anzhiyu-theme-op: #4a7cd623;
+  --anzhiyu-theme-op-deep: #4a7cd6dd;
 
-  --anzhiyu-background: #f4f3fb;
-  --global-bg: #f4f3fb;
+  --anzhiyu-background: #f2f5fa;
+  --global-bg: #f2f5fa;
   --anzhiyu-card-bg: #ffffff;
-  --anzhiyu-card-border: #e6e4f7;
-  --anzhiyu-secondbg: #f1effa;
-  --anzhiyu-ahoverbg: #f3f2fc;
-  --anzhiyu-card-btn-bg: #ecebf8;
-  --anzhiyu-post-blockquote-bg: #f7f6fd;
-  --anzhiyu-post-tabs-bg: #f1effa;
-  --anzhiyu-meta-theme-color: #f4f3fb;
+  --anzhiyu-card-border: #e2e9f4;
+  --anzhiyu-secondbg: #eaf0f8;
+  --anzhiyu-ahoverbg: #eef4fc;
+  --anzhiyu-card-btn-bg: #e6edf8;
+  --anzhiyu-post-blockquote-bg: #f5f9fe;
+  --anzhiyu-post-tabs-bg: #eaf0f8;
+  --anzhiyu-meta-theme-color: #f2f5fa;
 
-  --anzhiyu-fontcolor: #33324a;
-  --anzhiyu-secondtext: rgba(72, 70, 104, 0.78);
-  --anzhiyu-scrollbar: rgba(124, 111, 232, 0.45);
+  --anzhiyu-fontcolor: #2b3346;
+  --anzhiyu-secondtext: rgba(52, 64, 88, 0.78);
+  --anzhiyu-scrollbar: rgba(74, 124, 214, 0.45);
 
-  --anzhiyu-blue: #6fa8f5;
-  --anzhiyu-blue-tint: rgba(111, 168, 245, 0.12);
-  --anzhiyu-logo-color: linear-gradient(135deg, #8b7bff 0%, #6fa8f5 100%);
+  --anzhiyu-blue: #79a4e6;
+  --anzhiyu-blue-tint: rgba(121, 164, 230, 0.12);
+  --anzhiyu-logo-color: linear-gradient(135deg, #6f9bea 0%, #e4bc4e 100%);
 
   --anzhiyu-border-radius: 12px;
   --anzhiyu-radius: 12px;
 }
 
-/* ---------- 暗色：冷调深紫夜 ---------- */
+/* ---------- 暗色：深空夜空 ---------- */
 [data-theme="dark"] {
-  --anzhiyu-theme: #a79cf5;
-  --anzhiyu-theme-deep: #8878e0;
-  --anzhiyu-theme-op: #a79cf52e;
-  --anzhiyu-theme-op-deep: #a79cf5cc;
+  --anzhiyu-theme: #7fa6e8;
+  --anzhiyu-theme-deep: #5d86cc;
+  --anzhiyu-theme-op: #7fa6e82e;
+  --anzhiyu-theme-op-deep: #7fa6e8cc;
 
-  --anzhiyu-background: #141320;
-  --global-bg: #141320;
-  --anzhiyu-card-bg: #1b1a28;
-  --anzhiyu-card-border: #2a2840;
-  --anzhiyu-secondbg: #201f2e;
-  --anzhiyu-ahoverbg: #232132;
-  --anzhiyu-card-btn-bg: #262438;
-  --anzhiyu-post-blockquote-bg: #1a1927;
-  --anzhiyu-post-tabs-bg: #201f2e;
-  --anzhiyu-meta-theme-color: #141320;
+  --anzhiyu-background: #0b1220;
+  --global-bg: #0b1220;
+  --anzhiyu-card-bg: #121b2c;
+  --anzhiyu-card-border: #1f2b41;
+  --anzhiyu-secondbg: #162034;
+  --anzhiyu-ahoverbg: #1a2438;
+  --anzhiyu-card-btn-bg: #1c2740;
+  --anzhiyu-post-blockquote-bg: #111a29;
+  --anzhiyu-post-tabs-bg: #162034;
+  --anzhiyu-meta-theme-color: #0b1220;
 
-  --anzhiyu-fontcolor: #eae8f7;
-  --anzhiyu-secondtext: rgba(214, 210, 240, 0.75);
-  --anzhiyu-scrollbar: rgba(167, 156, 245, 0.45);
+  --anzhiyu-fontcolor: #e4ebf7;
+  --anzhiyu-secondtext: rgba(200, 214, 236, 0.75);
+  --anzhiyu-scrollbar: rgba(127, 166, 232, 0.45);
 
-  --anzhiyu-blue: #8fbcff;
-  --anzhiyu-blue-tint: rgba(143, 188, 255, 0.14);
-  --anzhiyu-maskbg: rgba(20, 19, 32, 0.6);
-  --anzhiyu-maskbgdeep: rgba(20, 19, 32, 0.85);
-  --anzhiyu-logo-color: linear-gradient(135deg, #b3a6ff 0%, #8fc4ff 100%);
+  --anzhiyu-blue: #93b8f2;
+  --anzhiyu-blue-tint: rgba(147, 184, 242, 0.14);
+  --anzhiyu-maskbg: rgba(11, 18, 32, 0.6);
+  --anzhiyu-maskbgdeep: rgba(11, 18, 32, 0.85);
+  --anzhiyu-logo-color: linear-gradient(135deg, #a8c8ff 0%, #f0cd6a 100%);
 
   --anzhiyu-border-radius: 12px;
   --anzhiyu-radius: 12px;
@@ -75,10 +83,10 @@
   flex: 1 0 auto;
 }
 
-/* ---------- 头图：贴合冷调、压暗上下缘便于阅读 ---------- */
+/* ---------- 头图：压暗上下缘便于阅读 ---------- */
 #page-header.full_page {
   background-size: cover !important;
-  background-position: center center !important;
+  background-position: center right !important;
   background-repeat: no-repeat !important;
 }
 
@@ -88,9 +96,9 @@
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    120% 80% at 50% 30%,
-    rgba(124, 111, 232, 0.10) 0%,
-    rgba(16, 15, 36, 0) 60%
+    120% 80% at 40% 34%,
+    rgba(74, 124, 214, 0.12) 0%,
+    rgba(8, 13, 26, 0) 62%
   );
 }
 
@@ -104,8 +112,8 @@
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    rgba(244, 243, 251, 0) 0%,
-    rgba(244, 243, 251, 0.85) 70%,
+    rgba(242, 245, 250, 0) 0%,
+    rgba(242, 245, 250, 0.85) 70%,
     var(--anzhiyu-background) 100%
   );
 }
@@ -113,34 +121,105 @@
 [data-theme="dark"] #page-header.full_page::after {
   background: linear-gradient(
     to bottom,
-    rgba(20, 19, 32, 0) 0%,
-    rgba(20, 19, 32, 0.85) 70%,
-    var(--anzhiyu-background) 100%
+    rgba(8, 13, 22, 0) 0%,
+    rgba(8, 13, 22, 0.9) 72%,
+    rgb(8, 13, 22) 100%
   );
 }
 
-/* ---------- 站点标题：柔和冷光 + 字距 ---------- */
+/* ---------- 非首页（归档/标签/分类等）：补上头图与蒙版 ---------- */
+#page-header.not-home-page {
+  background-image: url("/images/hero.webp");
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  overflow: hidden;
+}
+
+#page-header.not-home-page::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(9, 16, 30, 0.93) 0%,
+    rgba(9, 16, 30, 0.84) 30%,
+    rgba(9, 16, 30, 0.56) 52%,
+    rgba(9, 16, 30, 0.2) 74%,
+    rgba(9, 16, 30, 0.32) 100%
+  );
+}
+
+#page-header.not-home-page #page-site-info {
+  z-index: 2;
+}
+
+#page-header.not-home-page #page-site-info #site-title {
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 2px 24px rgba(8, 13, 26, 0.6);
+}
+
+/* ---------- 站点标题：银蓝冷光 ---------- */
+#site-info,
+#page-site-info {
+  padding-left: 9vw;
+  padding-right: 42vw;
+  box-sizing: border-box;
+}
+
 #page-header.full_page #site-title,
 #page-header.full_page #site-subtitle {
   letter-spacing: 0.14em;
+  text-align: left;
+}
+
+#site-info #site-title,
+#site-info #site-subtitle,
+#page-site-info #site-title,
+#page-site-info #site-subtitle {
+  text-align: left;
+}
+
+#site-info #site_social_icons {
+  justify-content: flex-start;
+}
+
+@media (max-width: 900px) {
+  #site-info,
+  #page-site-info {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  #site-info #site-title,
+  #site-info #site-subtitle,
+  #page-site-info #site-title,
+  #page-site-info #site-subtitle {
+    text-align: center;
+  }
+  #site-info #site_social_icons {
+    justify-content: center;
+  }
 }
 
 #page-header.full_page #site-title {
   font-weight: 600;
   text-shadow:
-    0 2px 30px rgba(139, 123, 255, 0.55),
-    0 1px 4px rgba(16, 15, 36, 0.45);
+    0 2px 30px rgba(120, 170, 240, 0.55),
+    0 1px 4px rgba(8, 13, 26, 0.55);
 }
 
 #page-header.full_page #site-subtitle {
   font-weight: 400;
-  opacity: 0.92;
-  text-shadow: 0 1px 12px rgba(16, 15, 36, 0.55);
+  opacity: 0.94;
+  text-shadow: 0 1px 12px rgba(8, 13, 26, 0.6);
 }
 
-/* ---------- 正文与链接：冷调细节 ---------- */
+/* ---------- 正文与链接 ---------- */
 ::selection {
-  background: rgba(124, 111, 232, 0.85);
+  background: rgba(74, 124, 214, 0.85);
   color: #fff;
 }
 
@@ -149,7 +228,7 @@
 }
 
 #article-container a:not(.headerlink):not(.fancybox):hover {
-  color: var(--anzhiyu-blue);
+  color: var(--nao-red);
 }
 
 /* 卡片圆角与悬浮冷光 */
@@ -159,25 +238,298 @@
   border-radius: var(--anzhiyu-border-radius);
 }
 
+/* 侧栏作者卡：深空星海，替代主题的纯色渐变 */
+#aside-content > .card-widget.card-info {
+  background: transparent;
+  overflow: hidden;
+}
+
+#aside-content > .card-widget.card-info::before {
+  background:
+    radial-gradient(1.3px 1.3px at 16% 20%, rgba(255, 255, 255, 0.9), transparent 62%),
+    radial-gradient(1px 1px at 68% 14%, rgba(255, 255, 255, 0.72), transparent 62%),
+    radial-gradient(1.5px 1.5px at 88% 40%, rgba(255, 255, 255, 0.6), transparent 62%),
+    radial-gradient(1px 1px at 30% 66%, rgba(255, 255, 255, 0.55), transparent 62%),
+    radial-gradient(1.2px 1.2px at 60% 86%, rgba(255, 255, 255, 0.5), transparent 62%),
+    radial-gradient(1px 1px at 44% 36%, rgba(255, 255, 255, 0.45), transparent 62%),
+    radial-gradient(130% 95% at 78% 8%, rgba(190, 218, 255, 0.45), transparent 64%),
+    linear-gradient(158deg, #0c1729 0%, #16294a 34%, #2f5c9e 72%, #5f8dda 100%) !important;
+  opacity: 1;
+}
+
 #recent-posts > .recent-post-item:hover {
-  box-shadow: 0 14px 36px -14px rgba(124, 111, 232, 0.45);
+  box-shadow: 0 14px 36px -14px rgba(74, 124, 214, 0.45);
 }
 
-/* 滚动条 */
+/* 滚动条：银蓝到鹅黄，呼应角色配色 */
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8b7bff 0%, #6fa8f5 100%) !important;
+  background: linear-gradient(180deg, #6f9bea 0%, #e4bc4e 100%) !important;
 }
 
-/* 代码块保持冷色，避免默认暖色块 */
 #article-container figure.highlight,
 #article-container pre {
   border-radius: 12px;
 }
 
+/* ===========================================================
+   看板娘 · 友利奈绪（立绘 + 动效，非骨骼 Live2D）
+   =========================================================== */
+#nao-widget {
+  position: fixed;
+  left: 16px;
+  bottom: 0;
+  z-index: 90;
+  width: clamp(116px, 10vw, 152px);
+  pointer-events: none;
+  transform-origin: 50% 100%;
+  transition: opacity 0.35s ease;
+  will-change: transform;
+}
+
+#nao-widget.is-hidden {
+  opacity: 0;
+}
+
+/* 漂浮 */
+.nao-float {
+  position: relative;
+  z-index: 2;
+  animation: nao-float 6.4s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+/* 呼吸 */
+.nao-breath {
+  animation: nao-breath 4.4s ease-in-out infinite;
+  transform-origin: 50% 100%;
+}
+
+#nao-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: auto;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-drag: none;
+  filter: drop-shadow(0 10px 18px rgba(11, 24, 46, 0.22));
+  transition: filter 0.3s ease;
+}
+
+#nao-img:hover {
+  filter: drop-shadow(0 12px 24px rgba(74, 124, 214, 0.4));
+}
+
+/* 点击回弹 */
+#nao-widget.is-bounce .nao-breath {
+  animation: nao-bounce 0.55s ease;
+}
+
+@keyframes nao-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes nao-breath {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(1.014);
+  }
+}
+
+@keyframes nao-bounce {
+  0% {
+    transform: scale(1, 1);
+  }
+  30% {
+    transform: scale(1.03, 0.97);
+  }
+  60% {
+    transform: scale(0.98, 1.02);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+
+/* 台词气泡 */
+#nao-bubble {
+  position: absolute;
+  left: 54%;
+  bottom: 63%;
+  z-index: 3;
+  width: 172px;
+  box-sizing: border-box;
+  padding: 10px 14px;
+  border-radius: 14px 14px 14px 4px;
+  background: #ffffff;
+  color: #2b3346;
+  font-size: 13px;
+  line-height: 1.6;
+  box-shadow: 0 8px 26px -8px rgba(11, 24, 46, 0.35);
+  border: 1px solid rgba(74, 124, 214, 0.25);
+  opacity: 0;
+  transform: translate(-6px, 6px) scale(0.94);
+  transform-origin: 0 100%;
+  transition: opacity 0.25s ease, transform 0.25s
+    cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+  white-space: normal;
+  word-break: break-word;
+}
+
+#nao-bubble::after {
+  content: "";
+  position: absolute;
+  left: 6px;
+  bottom: -7px;
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 0 solid transparent;
+  border-top: 8px solid #ffffff;
+  filter: drop-shadow(0 1px 0 rgba(74, 124, 214, 0.18));
+}
+
+#nao-bubble.is-on {
+  opacity: 1;
+  transform: translate(0, 0) scale(1);
+}
+
+[data-theme="dark"] #nao-bubble {
+  background: #162034;
+  color: #e4ebf7;
+  border-color: rgba(127, 166, 232, 0.3);
+  box-shadow: 0 8px 26px -8px rgba(0, 0, 0, 0.7);
+}
+
+[data-theme="dark"] #nao-bubble::after {
+  border-top-color: #162034;
+}
+
+/* 收起按钮 */
+#nao-close {
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(43, 51, 70, 0.28);
+  color: #fff;
+  font-size: 13px;
+  line-height: 22px;
+  text-align: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity 0.25s ease, background 0.25s ease;
+}
+
+#nao-widget:hover #nao-close {
+  opacity: 1;
+}
+
+#nao-close:hover {
+  background: var(--nao-red);
+}
+
+/* 召回小标签 */
+#nao-reopen {
+  position: fixed;
+  left: 0;
+  bottom: 96px;
+  z-index: 90;
+  width: 30px;
+  height: 46px;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  background: var(--anzhiyu-theme);
+  color: #fff;
+  font-size: 13px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateX(-100%);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 6px 18px -6px rgba(74, 124, 214, 0.6);
+}
+
+#nao-reopen.is-on {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* 窄屏：头图取景与标题居中对齐 */
+@media (max-width: 768px) {
+  #page-header.full_page {
+    height: 520px !important;
+    background-position: 24% center !important;
+  }
+
+  #page-header.not-home-page {
+    background-position: 30% center;
+  }
+
+  #page-header.full_page #site-info,
+  #page-header.not-home-page #page-site-info {
+    padding-left: 10px;
+    padding-right: 10px;
+    top: 280px;
+  }
+
+  #page-header.full_page #site-info #site-title,
+  #page-header.full_page #site-info #site-subtitle,
+  #page-header.not-home-page #page-site-info #site-title {
+    text-align: center;
+  }
+
+  #page-header.full_page #site-info #site_social_icons {
+    justify-content: center;
+  }
+}
+
+/* 文章页缩小一点，少挡正文 */
+body:has(#page-header.post-bg) #nao-widget {
+  width: clamp(102px, 8.6vw, 130px);
+}
+
+/* 窄屏不显示，避免挡住正文 */
+@media (max-width: 900px) {
+  #nao-widget,
+  #nao-reopen {
+    display: none !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nao-float,
+  .nao-breath {
+    animation: none !important;
+  }
+  #nao-widget {
+    transition: none;
+  }
+}
+
 /* 打印时还原 */
 @media print {
   #page-header.full_page::after,
-  #page-header.full_page::before {
+  #page-header.full_page::before,
+  #nao-widget,
+  #nao-reopen {
     display: none !important;
   }
 }

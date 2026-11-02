@@ -1,39 +1,45 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" preserveAspectRatio="xMidYMid slice">
   <defs>
-    <linearGradient id="sky" x1="0" y1="0" x2="0.2" y2="1">
-      <stop offset="0%" stop-color="#151432"/>
-      <stop offset="45%" stop-color="#2b2658"/>
-      <stop offset="78%" stop-color="#45407f"/>
-      <stop offset="100%" stop-color="#5a5490"/>
+    <linearGradient id="sky" x1="0" y1="0" x2="0.16" y2="1">
+      <stop offset="0%" stop-color="#080e1c"/>
+      <stop offset="42%" stop-color="#132039"/>
+      <stop offset="76%" stop-color="#22375c"/>
+      <stop offset="100%" stop-color="#3b5683"/>
     </linearGradient>
 
     <radialGradient id="halo" cx="0.5" cy="0.5" r="0.5">
-      <stop offset="0%" stop-color="#f2f0ff" stop-opacity="0.55"/>
-      <stop offset="55%" stop-color="#b9b0ff" stop-opacity="0.16"/>
-      <stop offset="100%" stop-color="#b9b0ff" stop-opacity="0"/>
+      <stop offset="0%" stop-color="#eaf2ff" stop-opacity="0.52"/>
+      <stop offset="52%" stop-color="#a8c8ff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#a8c8ff" stop-opacity="0"/>
     </radialGradient>
 
     <radialGradient id="moon" cx="0.38" cy="0.34" r="0.72">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="70%" stop-color="#e6e2ff"/>
-      <stop offset="100%" stop-color="#c9c2f2"/>
+      <stop offset="68%" stop-color="#eaf0fb"/>
+      <stop offset="100%" stop-color="#c8d6ea"/>
     </radialGradient>
 
-    <linearGradient id="aurora" x1="0" y1="0" x2="1" y2="0">
-      <stop offset="0%" stop-color="#7e8ef0" stop-opacity="0"/>
-      <stop offset="35%" stop-color="#9a8bf0" stop-opacity="0.30"/>
-      <stop offset="68%" stop-color="#8ea6f7" stop-opacity="0.34"/>
-      <stop offset="100%" stop-color="#8b7bff" stop-opacity="0"/>
+    <linearGradient id="band" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#8fb6f0" stop-opacity="0"/>
+      <stop offset="34%" stop-color="#b9d2f5" stop-opacity="0.26"/>
+      <stop offset="66%" stop-color="#8fb6f0" stop-opacity="0.30"/>
+      <stop offset="100%" stop-color="#8fb6f0" stop-opacity="0"/>
     </linearGradient>
 
     <linearGradient id="hillFar" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#3b3566"/>
-      <stop offset="100%" stop-color="#282349"/>
+      <stop offset="0%" stop-color="#2a3f5f"/>
+      <stop offset="100%" stop-color="#182741"/>
     </linearGradient>
 
     <linearGradient id="hillNear" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#211d3d"/>
-      <stop offset="100%" stop-color="#141128"/>
+      <stop offset="0%" stop-color="#16233a"/>
+      <stop offset="100%" stop-color="#0a1220"/>
+    </linearGradient>
+
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#cfe3ff" stop-opacity="0.55"/>
+      <stop offset="45%" stop-color="#8fb6f0" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#8fb6f0" stop-opacity="0"/>
     </linearGradient>
 
     <filter id="blur40" x="-40%" y="-40%" width="180%" height="180%">
@@ -42,18 +48,21 @@
     <filter id="blur10" x="-40%" y="-40%" width="180%" height="180%">
       <feGaussianBlur stdDeviation="10"/>
     </filter>
+    <filter id="blur4" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
   </defs>
 
   <rect width="800" height="600" fill="url(#sky)"/>
 
-  <!-- 月光晕 -->
-  <circle cx="590" cy="150" r="230" fill="url(#halo)"/>
-  <circle cx="590" cy="150" r="62" fill="url(#moon)"/>
-  <circle cx="590" cy="150" r="92" fill="#cfc8ff" opacity="0.10" filter="url(#blur10)"/>
+  <!-- 月与光晕 -->
+  <circle cx="596" cy="146" r="236" fill="url(#halo)"/>
+  <circle cx="596" cy="146" r="60" fill="url(#moon)"/>
+  <circle cx="596" cy="146" r="90" fill="#cfe0ff" opacity="0.10" filter="url(#blur10)"/>
 
-  <!-- 极光 -->
+  <!-- 银河带 -->
   <g filter="url(#blur40)">
-    <ellipse cx="330" cy="250" rx="420" ry="58" fill="url(#aurora)" transform="rotate(-8 330 250)"/>
+    <ellipse cx="330" cy="252" rx="430" ry="56" fill="url(#band)" transform="rotate(-9 330 252)"/>
   </g>
 
   <!-- 星点 -->
@@ -83,17 +92,29 @@
     <circle cx="636" cy="362" r="1.1" opacity="0.4"/>
   </g>
 
-  <!-- 远山 -->
-  <path d="M0 430 L96 372 L178 408 L268 344 L360 402 L452 352 L548 410 L648 366 L740 414 L800 386 L800 600 L0 600 Z"
-        fill="url(#hillFar)" opacity="0.95"/>
-  <!-- 近山 -->
-  <path d="M0 486 L112 436 L214 478 L324 424 L438 486 L556 440 L672 492 L800 452 L800 600 L0 600 Z"
+  <!-- 零星暖色星火（领结黄点缀） -->
+  <g fill="#e4bc4e">
+    <circle cx="150" cy="176" r="1.1" opacity="0.5"/>
+    <circle cx="404" cy="112" r="0.9" opacity="0.38"/>
+    <circle cx="712" cy="292" r="1" opacity="0.34"/>
+    <circle cx="286" cy="316" r="0.8" opacity="0.3"/>
+  </g>
+
+  <!-- 星之海：地平线银光 -->
+  <rect x="0" y="414" width="800" height="46" fill="url(#sea)" filter="url(#blur10)" opacity="0.9"/>
+
+  <!-- 远岸 -->
+  <path d="M0 424 L96 396 L178 416 L268 384 L360 412 L452 386 L548 418 L648 392 L740 420 L800 402 L800 600 L0 600 Z"
+        fill="url(#hillFar)" opacity="0.92"/>
+  <!-- 近岸 -->
+  <path d="M0 488 L112 448 L214 482 L324 436 L438 488 L556 448 L672 492 L800 458 L800 600 L0 600 Z"
         fill="url(#hillNear)"/>
 
-  <!-- 水面倒影微光 -->
-  <g opacity="0.14">
-    <ellipse cx="590" cy="470" rx="52" ry="6" fill="#d8d3ff"/>
-    <ellipse cx="590" cy="496" rx="34" ry="5" fill="#d8d3ff" opacity="0.7"/>
-    <ellipse cx="590" cy="518" rx="22" ry="4" fill="#d8d3ff" opacity="0.5"/>
+  <!-- 水面碎光 -->
+  <g opacity="0.30" filter="url(#blur4)">
+    <ellipse cx="596" cy="470" rx="56" ry="6" fill="#dcebff"/>
+    <ellipse cx="596" cy="498" rx="36" ry="5" fill="#dcebff" opacity="0.7"/>
+    <ellipse cx="590" cy="524" rx="22" ry="4" fill="#dcebff" opacity="0.45"/>
+    <ellipse cx="286" cy="512" rx="26" ry="3" fill="#cfe3ff" opacity="0.5"/>
   </g>
 </svg>
