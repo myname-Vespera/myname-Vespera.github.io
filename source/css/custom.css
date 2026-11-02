@@ -271,6 +271,16 @@
   border-radius: 12px;
 }
 
+/* ---------- 侧栏头像：默认静止，鼠标悬停才转圈 ---------- */
+/* 主题 avatar.effect 会让头像 2s 匀速无限旋转，正脸长期是歪的 */
+.avatar-img {
+  animation: none !important;
+}
+
+.avatar-img:hover {
+  animation: avatar_turn_around 1.6s linear infinite !important;
+}
+
 /* ===========================================================
    看板娘 · 友利奈绪（立绘 + 动效，非骨骼 Live2D）
    =========================================================== */
@@ -504,6 +514,57 @@
   background: var(--nao-red);
 }
 
+/* 语音开关 */
+#nao-voice {
+  position: absolute;
+  left: 0;
+  bottom: 38px;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: rgba(43, 51, 70, 0.28);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: auto;
+  transition: opacity 0.25s ease, background 0.25s ease;
+}
+
+#nao-voice svg {
+  width: 13px;
+  height: 13px;
+  display: block;
+}
+
+#nao-widget:hover #nao-voice {
+  opacity: 1;
+}
+
+#nao-voice:hover {
+  background: var(--anzhiyu-theme);
+}
+
+/* 说话时轻微点头 */
+#nao-widget.is-speaking #nao-img {
+  animation: nao-talk 0.46s ease-in-out infinite;
+  filter: drop-shadow(0 12px 24px rgba(74, 124, 214, 0.42));
+}
+
+@keyframes nao-talk {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.008);
+  }
+}
+
 /* 召回小标签 */
 #nao-reopen {
   position: fixed;
@@ -576,7 +637,8 @@ body:has(#page-header.post-bg) #nao-widget {
 
 @media (prefers-reduced-motion: reduce) {
   .nao-float,
-  .nao-breath {
+  .nao-breath,
+  #nao-widget.is-speaking #nao-img {
     animation: none !important;
   }
   #nao-widget {

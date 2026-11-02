@@ -57,7 +57,82 @@
 
   var widget, open, bubble, img, clsTimer, sayTimer;
 
-  function say(text, ms) {
+  /* ---------- 语音（浏览器原生 TTS，无需外部接口） ---------- */
+  var MUTE_KEY = "nao-widget-muted";
+  var muted = false;
+  var voice = null;
+
+  function loadVoices() {
+    if (!window.speechSynthesis) return;
+    var list = window.speechSynthesis.getVoices() || [];
+    if (!list.length) return;
+    var zh = list.filter(function (v) {
+      return /^zh([-_]|$)/i.test(v.lang) || /Chinese|中文|普通话/i.test(v.name);
+    });
+    if (!zh.length) {
+      voice = null;
+      return;
+    }
+    var pref = [
+      "Xiaoxiao",
+      "Xiaoyi",
+      "Yunxi",
+      "Huihui",
+      "Yaoyao",
+      "Tingting",
+      "Meijia",
+      "Sinji",
+    ];
+    var found = null;
+    for (var i = 0; i < pref.length && !found; i++) {
+      for (var j = 0; j < zh.length; j++) {
+        if (zh[j].name.indexOf(pref[i]) >= 0) {
+          found = zh[j];
+          break;
+        }
+      }
+    }
+    voice = found || zh[0];
+  }
+
+  function setSpeaking(on) {
+    if (widget) widget.classList.toggle("is-speaking", on);
+  }
+
+  function stopSpeak() {
+    if (window.speechSynthesis) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch (err) {}
+    }
+    setSpeaking(false);
+  }
+
+  function speak(text) {
+    if (muted) return;
+    if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) return;
+    try {
+      window.speechSynthesis.cancel();
+      var u = new SpeechSynthesisUtterance(text);
+      u.lang = "zh-CN";
+      u.rate = 1.02;
+      u.pitch = 1.22;
+      u.volume = 1;
+      if (voice) u.voice = voice;
+      u.onstart = function () {
+        setSpeaking(true);
+      };
+      u.onend = function () {
+        setSpeaking(false);
+      };
+      u.onerror = function () {
+        setSpeaking(false);
+      };
+      window.speechSynthesis.speak(u);
+    } catch (err) {}
+  }
+
+  function say(text, ms, silent) {
     if (!bubble) return;
     bubble.textContent = text;
     bubble.classList.add("is-on");
@@ -65,6 +140,7 @@
     sayTimer = setTimeout(function () {
       bubble.classList.remove("is-on");
     }, ms || 5200);
+    if (!silent) speak(text);
   }
 
   function bounce() {
@@ -232,6 +308,7 @@
       '<div class="nao-float"><div class="nao-breath">' +
       '<img id="nao-img" src="/images/nao.webp" alt="友利奈绪" draggable="false">' +
       "</div></div>" +
+      '<button id="nao-voice" type="button" aria-label="开关语音"></button>' +
       '<button id="nao-close" type="button" aria-label="收起看板娘">×</button>';
     document.body.appendChild(widget);
 
@@ -266,6 +343,53 @@
       e.stopPropagation();
       hide(true);
     });
+
+    /* 语音开关 */
+    var vbtn = document.getElementById("nao-voice");
+    var ICON_ON =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M16.5 8.5a5 5 0 0 1 0 7"/><path d="M19.5 6a9 9 0 0 1 0 12"/></svg>';
+    var ICON_OFF =
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m16 9 5 6"/><path d="m21 9-5 6"/></svg>';
+
+    function paintVoice() {
+      if (!vbtn) return;
+      vbtn.innerHTML = muted ? ICON_OFF : ICON_ON;
+      vbtn.title = muted ? "开启语音" : "关闭语音";
+      vbtn.setAttribute("aria-pressed", muted ? "false" : "true");
+    }
+
+    try {
+      muted = localStorage.getItem(MUTE_KEY) === "1";
+    } catch (err) {
+      muted = false;
+    }
+    paintVoice();
+
+    if (vbtn) {
+      vbtn.addEventListener("click", function (e) {
+        e.stopPropagation();
+        muted = !muted;
+        try {
+          localStorage.setItem(MUTE_KEY, muted ? "1" : "0");
+        } catch (err) {}
+        paintVoice();
+        if (muted) {
+          stopSpeak();
+          say("那我先安静一会儿。", 3600, true);
+        } else {
+          stopSpeak();
+          setTimeout(function () {
+            say("声音打开了，听得到吗？", 4200);
+          }, 120);
+        }
+      });
+    }
+
+    loadVoices();
+    if (window.speechSynthesis) {
+      window.speechSynthesis.onvoiceschanged = loadVoices;
+      setTimeout(loadVoices, 400);
+    }
 
     open.addEventListener("click", function () {
       hide(false);
@@ -309,6 +433,7 @@
     } catch (err) {}
     if (on) {
       bubble.classList.remove("is-on");
+      stopSpeak();
     } else {
       target.x = 0;
       target.r = 0;
