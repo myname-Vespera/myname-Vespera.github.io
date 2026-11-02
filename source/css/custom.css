@@ -313,11 +313,11 @@
   text-shadow: 0 1px 12px rgba(8, 13, 26, 0.6);
 }
 
-/* ---------- 光标：星海奈绪 ---------- */
-/* 此前 Reimu 主题有整套人物光标，换主题后丢了；这里按现在的配色重绘三件套 */
+/* ---------- 光标：奈绪头像 ---------- */
+/* 此前 Reimu 主题有整套人物光标，换主题后丢了；这里用奈绪的 Q 版头像顶上 */
 html,
 body {
-  cursor: url("/images/cursor/nao-arrow.png") 3 2, auto;
+  cursor: url("/images/cursor/nao-face.png") 2 2, auto;
 }
 
 a,
@@ -345,7 +345,7 @@ input[type="range"],
 .category-bar-item,
 .card-archive-list-item,
 #catalog-bar a {
-  cursor: url("/images/cursor/nao-star.png") 16 16, pointer;
+  cursor: url("/images/cursor/nao-face.png") 2 2, pointer;
 }
 
 input[type="text"],
@@ -358,7 +358,7 @@ input[type="tel"],
 input:not([type]),
 textarea,
 [contenteditable="true"] {
-  cursor: url("/images/cursor/nao-text.png") 16 16, text;
+  cursor: url("/images/cursor/nao-face.png") 2 2, text;
 }
 
 /* ---------- 正文与链接 ---------- */
