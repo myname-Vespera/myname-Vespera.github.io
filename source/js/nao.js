@@ -10,6 +10,7 @@
   if (window.innerWidth <= BP) return;
 
   var KEY = "nao-widget-hidden";
+  var POS_KEY = "nao-widget-pos";
   var LINES = [
     "我是你的恋人！……这句话，可不能反悔哦。",
     "学生会的工作，交给我就好。",
@@ -23,6 +24,8 @@
     "你来了。我还以为今天你不会来。",
     "在这里站着，风里都是星星的味道。",
     "有事就说，我听着呢。",
+    "拖一下我，就能换个地方站。",
+    "这个位置不错吧？我挑的。",
   ];
   var GREET = {
     morning: "早上好。今天的星星还没落呢。",
@@ -104,6 +107,7 @@
   }
 
   function onMove(e) {
+    if (dg.active) return;
     var w = window.innerWidth || 1;
     var dx = (e.clientX - w / 2) / (w / 2);
     if (dx < -1) dx = -1;
@@ -111,6 +115,113 @@
     target.x = dx * -9;
     target.r = dx * -5.5;
     start();
+  }
+
+  /* ---------- 自由拖动 ---------- */
+  var dg = { active: false, moved: false, sx: 0, sy: 0, ox: 0, oy: 0 };
+  var pos = null;
+
+  function vw() {
+    return document.documentElement.clientWidth || window.innerWidth;
+  }
+
+  function vh() {
+    return document.documentElement.clientHeight || window.innerHeight;
+  }
+
+  function clampPos(left, top) {
+    var w = widget.offsetWidth || 96;
+    var h = widget.offsetHeight || 150;
+    return {
+      left: Math.min(Math.max(2, left), Math.max(2, vw() - w - 2)),
+      top: Math.min(Math.max(2, top), Math.max(2, vh() - h - 2)),
+    };
+  }
+
+  /* 落位 + 气泡方向自动翻转 */
+  function place(p, save) {
+    if (!p) return;
+    var c = clampPos(p.left, p.top);
+    widget.style.left = c.left + "px";
+    widget.style.top = c.top + "px";
+    widget.style.bottom = "auto";
+    widget.classList.add("is-placed");
+    widget.classList.toggle("is-low", c.top < 190);
+    widget.classList.toggle("is-left", c.left > vw() - 196);
+    pos = c;
+    if (save) {
+      try {
+        localStorage.setItem(POS_KEY, JSON.stringify(c));
+      } catch (err) {}
+    }
+  }
+
+  function onDown(e) {
+    if (e.button && e.button !== 0) return;
+    if (e.target && e.target.id === "nao-close") return;
+    var r = widget.getBoundingClientRect();
+    dg.active = true;
+    dg.moved = false;
+    dg.sx = e.clientX;
+    dg.sy = e.clientY;
+    dg.ox = e.clientX - r.left;
+    dg.oy = e.clientY - r.top;
+    // 拖拽时冻结视线微摆，免得跟着抖
+    target.x = 0;
+    target.r = 0;
+    cur.x = 0;
+    cur.r = 0;
+    if (raf) {
+      cancelAnimationFrame(raf);
+      raf = null;
+    }
+    widget.style.transform = "translateX(0px) rotate(0deg)";
+    widget.classList.add("is-dragging");
+    try {
+      widget.setPointerCapture(e.pointerId);
+    } catch (err) {}
+  }
+
+  function onDrag(e) {
+    if (!dg.active) return;
+    var dx = e.clientX - dg.sx;
+    var dy = e.clientY - dg.sy;
+    if (!dg.moved) {
+      if (Math.abs(dx) + Math.abs(dy) < 5) return;
+      dg.moved = true;
+    }
+    var p = clampPos(e.clientX - dg.ox, e.clientY - dg.oy);
+    widget.style.left = p.left + "px";
+    widget.style.top = p.top + "px";
+    widget.style.bottom = "auto";
+    widget.classList.add("is-placed");
+    widget.classList.toggle("is-low", p.top < 190);
+    widget.classList.toggle("is-left", p.left > vw() - 196);
+    pos = p;
+    if (e.cancelable) e.preventDefault();
+  }
+
+  function onUp() {
+    if (!dg.active) return;
+    dg.active = false;
+    widget.classList.remove("is-dragging");
+    if (dg.moved) place(pos, true);
+    // click 在 pointerup 之后同步触发，这里延后一拍再复位
+    setTimeout(function () {
+      dg.moved = false;
+    }, 0);
+  }
+
+  function resetPos() {
+    pos = null;
+    try {
+      localStorage.removeItem(POS_KEY);
+    } catch (err) {}
+    widget.classList.remove("is-placed", "is-low", "is-left");
+    widget.style.left = "";
+    widget.style.top = "";
+    widget.style.bottom = "";
+    say("回到老地方了。");
   }
 
   /* ---------- 挂载 ---------- */
@@ -134,8 +245,21 @@
     img = document.getElementById("nao-img");
 
     img.addEventListener("click", function () {
+      if (dg.moved) return;
       bounce();
       say(pick(LINES));
+    });
+
+    /* 拖动：鼠标 / 触屏统一用 pointer 事件 */
+    widget.addEventListener("pointerdown", onDown);
+    document.addEventListener("pointermove", onDrag, { passive: false });
+    document.addEventListener("pointerup", onUp);
+    document.addEventListener("pointercancel", onUp);
+
+    /* 双击复位 */
+    img.addEventListener("dblclick", function (e) {
+      e.preventDefault();
+      resetPos();
     });
 
     document.getElementById("nao-close").addEventListener("click", function (e) {
@@ -149,6 +273,30 @@
     });
 
     document.addEventListener("mousemove", onMove, { passive: true });
+
+    /* 还原上次拖到的位置 */
+    try {
+      var saved = localStorage.getItem(POS_KEY);
+      if (saved) pos = JSON.parse(saved);
+    } catch (err) {
+      pos = null;
+    }
+    if (pos && typeof pos.left === "number") {
+      place(pos, false);
+      if (!img.complete) {
+        img.addEventListener("load", function () {
+          place(pos, false);
+        });
+      } else {
+        setTimeout(function () {
+          place(pos, false);
+        }, 60);
+      }
+    }
+
+    window.addEventListener("resize", function () {
+      if (pos) place(pos, false);
+    });
   }
 
   function hide(on) {
