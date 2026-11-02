@@ -162,6 +162,102 @@
   text-shadow: 0 2px 24px rgba(8, 13, 26, 0.6);
 }
 
+/* ---------- 头图向下箭头：星海玻璃珠 ---------- */
+/* 主题默认是 30px 浅灰 chevron，正好压在头图底部白渐变上，几乎看不见 */
+#page-header #scroll-down {
+  padding-bottom: 34px;
+}
+
+#page-header #scroll-down .scroll-down-effects {
+  position: relative;
+  top: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  margin: 0 auto;
+  border-radius: 50%;
+  font-size: 15px;
+  line-height: 1;
+  color: #f6faff;
+  text-shadow: 0 1px 3px rgba(6, 12, 26, 0.55);
+  background: radial-gradient(
+    circle at 50% 28%,
+    rgba(96, 144, 222, 0.9) 0%,
+    rgba(23, 42, 74, 0.92) 62%,
+    rgba(13, 24, 44, 0.95) 100%
+  );
+  border: 1px solid rgba(196, 222, 255, 0.55);
+  -webkit-backdrop-filter: blur(8px) saturate(150%);
+  backdrop-filter: blur(8px) saturate(150%);
+  box-shadow:
+    0 10px 24px -10px rgba(6, 12, 26, 0.75),
+    0 0 18px rgba(74, 124, 214, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  animation: nao-scroll-float 2.8s ease-in-out infinite !important;
+  transition: background 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* 缓慢扩散的光环，像水面上的一圈星尘 */
+#page-header #scroll-down .scroll-down-effects::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  border: 1px solid rgba(154, 192, 246, 0.6);
+  pointer-events: none;
+  animation: nao-scroll-ring 2.8s ease-out infinite;
+}
+
+#page-header #scroll-down:hover .scroll-down-effects {
+  background: radial-gradient(
+    circle at 50% 28%,
+    rgba(126, 172, 246, 0.98) 0%,
+    rgba(44, 82, 148, 0.96) 60%,
+    rgba(26, 48, 88, 0.98) 100%
+  );
+  border-color: rgba(224, 240, 255, 0.9);
+  box-shadow:
+    0 12px 26px -10px rgba(6, 12, 26, 0.8),
+    0 0 26px rgba(74, 124, 214, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+@keyframes nao-scroll-float {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+@keyframes nao-scroll-ring {
+  0% {
+    transform: scale(0.86);
+    opacity: 0.7;
+  }
+  70%,
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  #page-header #scroll-down {
+    padding-bottom: 16px;
+  }
+  #page-header #scroll-down .scroll-down-effects {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+}
+
 /* ---------- 站点标题：银蓝冷光 ---------- */
 #site-info,
 #page-site-info {
@@ -643,6 +739,11 @@ body:has(#page-header.post-bg) #nao-widget {
   }
   #nao-widget {
     transition: none;
+  }
+  #page-header #scroll-down .scroll-down-effects,
+  #page-header #scroll-down .scroll-down-effects::after {
+    animation: none !important;
+    opacity: 1;
   }
 }
 
