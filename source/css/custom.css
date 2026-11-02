@@ -313,6 +313,54 @@
   text-shadow: 0 1px 12px rgba(8, 13, 26, 0.6);
 }
 
+/* ---------- 光标：星海奈绪 ---------- */
+/* 此前 Reimu 主题有整套人物光标，换主题后丢了；这里按现在的配色重绘三件套 */
+html,
+body {
+  cursor: url("/images/cursor/nao-arrow.png") 3 2, auto;
+}
+
+a,
+a *,
+button,
+.button,
+.btn,
+summary,
+label,
+select,
+[role="button"],
+input[type="submit"],
+input[type="button"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+input[type="file"],
+input[type="range"],
+#rightside > div > button,
+#rightside > div > a,
+#pagination .page-number,
+#pagination .extend,
+#toc a,
+.toc-link,
+.category-bar-item,
+.card-archive-list-item,
+#catalog-bar a {
+  cursor: url("/images/cursor/nao-star.png") 16 16, pointer;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="url"],
+input[type="password"],
+input[type="number"],
+input[type="tel"],
+input:not([type]),
+textarea,
+[contenteditable="true"] {
+  cursor: url("/images/cursor/nao-text.png") 16 16, text;
+}
+
 /* ---------- 正文与链接 ---------- */
 ::selection {
   background: rgba(74, 124, 214, 0.85);
